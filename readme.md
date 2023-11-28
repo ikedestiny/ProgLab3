@@ -18,14 +18,22 @@ with a recess at the end stuck out from a hole in the wall, and a luminous
 inscription blinked under it: “Santik.
 "
 
+# PROJECT STRUCTURE
 
 ## This project is for a basic hotel with name "ЭКОНОМИКА", rooms and  workers.
+
 ## By default the hotel has a receptionist and 20 guests because its the cheapest in the world.
+
 ### That is why the first 20 rooms are already booked when you initialize the class.
+
 ## I made abstract class for person because i dont wanna be able to create objects of person.
+
 ### just to create a common base for methods and variables both in workers and guests to avoid repetiotion and maintain SOLID principles.
+
 ## The receptionist extends worker. I specially created the receptionist class because of the functions he might have in future like interactions with the guest.
-## I have three interfaces : 
+
+## I have three interfaces :
+
 ### Onable,ringeable and blinkeable.
 #### I did this to enable unrelated classes implement the same methods and to enable muntiple inheritance.
 #### for example, ringeable is implemented in both telephone and bell, while peepHole implements both Onable and blinkeable.

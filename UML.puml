@@ -1,0 +1,137 @@
+@startuml
+class Receptionist {
++ void welcomeGuest(Guest)
++ void giveRoomToGuest(Guest,int)
++ void callGuest(Guest)
+}
+enum RootOfModel.Gender {
++  MALE
++  FEMALE
+}
+class RootOfModel.TV {
+~ boolean isOn
++ void toggleSwitch()
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class RootOfModel.PeepHoleBulb {
+~ boolean bulbState
++ void blink()
++ void toggleSwitch()
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class Guest {
+~ boolean hasBookedRoom
+~ Room room
++ void bookRoom(Hotel,int)
++ void callWorker(Worker)
++ void layOnBed()
+}
+class Worker {
+- Position position
+- int id
+- int salary
++ void work()
++ Position getPosition()
++ void setPosition(Position)
++ int getSalary()
++ void setSalary(int)
++ int getId()
+}
+abstract class RootOfModel.Person {
+- String name
+- int age
+- Gender gender
++ String getName()
++ int getAge()
++ Gender getGender()
+}
+interface RootOfModel.Onable {
+~ void toggleSwitch()
+}
+class Room {
+- int number
+~ Bell bell
+~ Chair chair
+~ PeepHoleBulb hole
+~ Telephone telephone
+~ Wardrobe wardrobe
+~ TV televison
+~ int price
+- boolean booked
++ int getNumber()
++ void setNumber(int)
++ boolean isBooked()
++ void setBooked(boolean)
++ Bell getBell()
++ Chair getChair()
++ PeepHoleBulb getHole()
++ Telephone getTelephone()
++ Wardrobe getWardrobe()
++ int getPrice()
++ TV getTelevison()
++ void turnOnTV()
+}
+class RootOfModel.Telephone {
++ void ring()
++ void call(Person)
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class RootOfModel.Chair {
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class RootOfModel.Bell {
++ void ring()
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+class Hotel {
+~ List<Room> rooms
+~ List<Worker> workers
+~ {static} String name
+~ {static} Receptionist receptionist
++ List<Room> getRooms()
++ List<Worker> getWorkers()
++ {static} Receptionist getReceptionist()
+}
+enum Position {
++  MANAGER
++  CHEF
++  BARMAN
++  WAITER
++  WAITRESS
++  RECEPTIONIST
+}
+interface RootOfModel.Ringeable {
+~ void ring()
+}
+interface RootOfModel.Blinkeable {
+~ void blink()
+}
+class Main {
++ {static} void main(String[])
+}
+class RootOfModel.Wardrobe {
++ int hashCode()
++ boolean equals(Object)
++ String toString()
+}
+
+
+Worker <|-- Receptionist
+RootOfModel.Onable <|.. RootOfModel.TV
+RootOfModel.Onable <|.. RootOfModel.PeepHoleBulb
+RootOfModel.Blinkeable <|.. RootOfModel.PeepHoleBulb
+RootOfModel.Person <|-- Guest
+RootOfModel.Person <|-- Worker
+RootOfModel.Ringeable <|.. RootOfModel.Telephone
+RootOfModel.Ringeable <|.. RootOfModel.Bell
+@enduml

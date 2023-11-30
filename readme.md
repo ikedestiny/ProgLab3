@@ -22,23 +22,27 @@
 
 ## This project is for a basic hotel with name "ЭКОНОМИКА", rooms and  workers.
 
-## By default the hotel has a receptionist and 20 guests because its the cheapest in the world.
+## The hotel class creates a hotel and has methods for adding rooms setting room price, setting receptionist and adding appliances to rooms
 
-### That is why the first 20 rooms are already booked when you initialize the class.
+## The room class works with the room.
+
+### creates rooms and adds appliances to it has other methods for setting the bookedState, price etc
 
 ## I made abstract class for person because i dont wanna be able to create objects of person.
 
-### just to create a common base for methods and variables both in workers and guests to avoid repetiotion and maintain SOLID principles.
+### just to create a common base for methods and variables both in workers and guests to avoid repetition and maintain SOLID principles.
 
 ## The receptionist extends worker. I specially created the receptionist class because of the functions he might have in future like interactions with the guest.
 
-## I have three interfaces :
+## I have four interfaces :
 
-### Onable,ringeable and blinkeable.
+### Onable,ringeable, Occupyable and blinkeable.
 
 #### I did this to enable unrelated classes implement the same methods and to enable muntiple inheritance.
 
 #### for example, ringeable is implemented in both telephone and bell, while peepHole implements both Onable and blinkeable.
+
+#### the occupyable interface is implemented by appliances which canbe occupied like shelf and wardrobe and has a method to set if its occupied or not
 
 ## for the enums
 
@@ -46,4 +50,4 @@
 
 #### I want their values to be  constants that i can enumerate and use the ordinals for loops later in the project. And also for simplicity purposes.
 
-## The main class creates a Model.Hotel Object and Guests(Kozlic and Dunno as from lab ) and demonstrates some of the methods in guest. 
+## The main class creates a Hotel Object and Guests(Kozlic and Dunno as from lab ) and receptionist and demonstrates some of the methods in guest and hotel. 

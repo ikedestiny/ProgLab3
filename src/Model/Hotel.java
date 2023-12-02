@@ -6,11 +6,10 @@ import RootOfModel.RoomAppliance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Hotel {
-    private static int objectCount = 0;
     private final String name;
-    private final int id;
     private final List<Room> rooms;
     private final List<Worker> workers;
     private final Receptionist receptionist;
@@ -21,8 +20,6 @@ public class Hotel {
         System.out.println("The cheapest rooms in the world".toUpperCase());
         this.rooms = new ArrayList<>();
         this.workers = new ArrayList<>();
-        objectCount++;
-        this.id = objectCount;
 
     }
 
@@ -68,17 +65,19 @@ public class Hotel {
     }
 
     public int hashCode() {
-        return this.getClass().getSimpleName().length() + id;
+        return Objects.hash(super.hashCode(), getName(), getReceptionist(), getRooms(), getWorkers());
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        Hotel hotel = (Hotel) obj;
+        return Objects.equals(getName(), hotel.getName()) && hotel.getReceptionist() == getReceptionist() && getRooms() == hotel.getRooms() && getWorkers() == hotel.getWorkers();
     }
-
-
     @Override
     public String toString() {
-        return " " + this.getClass().getSimpleName().toUpperCase();
+        return "Hotel " + getName();
     }
 }

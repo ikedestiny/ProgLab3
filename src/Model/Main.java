@@ -20,19 +20,25 @@ public class Main {
         hotel.addAppliance(new Closet());
         hotel.addAppliance(new Shelf());
 
-        Guest guests = new Guest("Dunno and Kozlik", 25, Gender.MALE);
+        Guest guests = new Guest("Dunno", 25, Gender.MALE);
+        Guest guests1 = new Guest("Kozlik", 25, Gender.MALE);
 
         hotel.getReceptionist().welcomeGuest(guests, hotel);
         guests.bookRoom(hotel, 100);
+        guests1.bookRoom(hotel, 100);
+        guests1.getRoom().setBooked(true);
         hotel.getReceptionist().giveGuestKey(guests);
 
         guests.openCloset();
         guests.getSettled();
+        guests1.layOnBed();
         guests.layOnBed();
 
         guests.getRoom().ringBell();
         guests.getRoom().blinkHole();
         guests.call(hotel.getReceptionist());
+
+        System.out.println(hotel.getReceptionist().toString());
 
 
     }

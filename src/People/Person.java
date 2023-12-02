@@ -3,6 +3,8 @@ package People;
 import Appliances.Telephone;
 import RootOfModel.Gender;
 
+import java.util.Objects;
+
 public abstract class Person {
 
     private static int objectCount = 0;
@@ -45,18 +47,20 @@ public abstract class Person {
     }
 
     public int hashCode() {
-        return this.getClass().getSimpleName().length() + id;
+        return Objects.hash(super.hashCode(), getName(), getName(), getGender());
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        Person person = (Person) obj;
+        return Objects.equals(getName(), person.getName()) && getAge() == person.getAge() && getGender() == person.getGender();
     }
-
-
     @Override
     public String toString() {
-        return " " + this.getClass().getSimpleName().toUpperCase();
+        return "Person " + getName();
     }
 
 

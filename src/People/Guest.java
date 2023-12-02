@@ -8,6 +8,8 @@ import Model.Room;
 import RootOfModel.Gender;
 import RootOfModel.RoomAppliance;
 
+import java.util.Objects;
+
 public class Guest extends Person {
 
     private boolean hasBookedRoom = false;
@@ -20,7 +22,6 @@ public class Guest extends Person {
     public void bookRoom(Hotel hotel, int RoomNumber) {
         this.hasBookedRoom = true;
         this.room = hotel.getRooms().get(RoomNumber);
-        room.setBooked(true);
     }
 
     public void call(Receptionist receptionist) throws InterruptedException {
@@ -71,5 +72,24 @@ public class Guest extends Person {
                 shelf.occupy();
             }
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getName(), getName(), getGender());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        Guest guest = (Guest) obj;
+        return Objects.equals(getName(), guest.getName()) && getAge() == guest.getAge() && getGender() == guest.getGender();
+    }
+
+    @Override
+    public String toString() {
+        return "Guest " + getName();
     }
 }

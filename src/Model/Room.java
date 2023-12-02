@@ -6,12 +6,13 @@ import RootOfModel.RoomAppliance;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Room {
     private static int objectCount = 0;
     private final int id;
-    List<RoomAppliance> appliances;
-    int price;
+    private final List<RoomAppliance> appliances;
+    private int price;
     private int number;
     private boolean booked;
 
@@ -57,7 +58,7 @@ public class Room {
     public void ringBell() throws InterruptedException {
         for (RoomAppliance appliance : this.getAppliances()) {
             if (appliance.getClass().getSimpleName().equalsIgnoreCase("bell")) {
-                Bell bell = new Bell();
+                Bell bell = (Bell) appliance;
                 bell.ring();
                 System.out.println("Guest looks at Peephole");
             }
@@ -74,19 +75,26 @@ public class Room {
         }
     }
 
-    public int hashCode() {
-        return this.getClass().getSimpleName().length() + id;
+    public int getId() {
+        return id;
     }
+
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getId(), getPrice(), getNumber());
+    }
+
 
     @Override
     public boolean equals(Object obj) {
-        return this.hashCode() == obj.hashCode();
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        Room room = (Room) obj;
+        return Objects.equals(getNumber(), room.getNumber()) && getPrice() == room.getPrice() && getId() == room.getId();
     }
-
-
     @Override
     public String toString() {
-        return " " + this.getClass().getSimpleName().toUpperCase();
+        return "Room " + getNumber();
     }
 
 }
